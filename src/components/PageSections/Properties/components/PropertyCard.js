@@ -38,6 +38,40 @@ const PropertyCard = ({ data, isList, property,valueUf }) => {
     />
   );
 
+    // Validador de extension .jpg / .png/ .jpeg  para las imgs
+    const validaImage = (image) => {
+      if (image) {
+        const validExtensions = ['.jpg', '.jpeg', '.png'];
+    
+        if (validExtensions.some(ext => image.toLowerCase().endsWith(ext))) {
+          return (
+            <img
+              className={`${
+                isList
+                  ? 'h-[299px] w-[100%] md:w-[400px] xl:w-[400px] object-cover rounded-t-xl xl:rounded-none'
+                  : 'rounded-t-xl'
+              }  object-cover h-[299px] w-full`}
+              src={image}
+              alt={`top-img-${title}`}
+              width="full"
+            />
+          );
+        }
+      }
+      return (
+        <img
+          className={`${
+            isList
+              ? 'h-[299px] w-[100%] md:w-[400px] xl:w-[400px] object-cover rounded-t-xl xl:rounded-none'
+              : 'rounded-t-xl'
+          }  object-cover h-[299px] w-full`}
+          src={`https://res.cloudinary.com/dbrhjc4o5/image/upload/v1681933697/unne-media/errors/not-found-img_pp5xj7.jpg`}
+          alt={`top-img-${title}`}
+          width="full"
+        />
+      );
+    };
+
 
   const _renderItem = (name,code,price) => {
     let ufValue = price;
@@ -74,7 +108,7 @@ const PropertyCard = ({ data, isList, property,valueUf }) => {
           : 'w-full '
       } border rounded-xl border-gray-200 hover:cursor-pointer hover:shadow-xl transition duration-300 ease-in-out`}
     >
-      <img
+      {/* <img
         className={`${
           isList
             ? 'h-[299px] w-[100%] md:w-[400px]  xl:w-[400px] object-cover rounded-t-xl xl:rounded-none'
@@ -84,7 +118,10 @@ const PropertyCard = ({ data, isList, property,valueUf }) => {
         alt={`top-img-${title}`}
         width="full"
 
-      />
+      /> */}
+
+         {/* Declaramos la validación de imagen */}
+         {validaImage(image)}
 
       <div className="p-3">
         <div className={`${isList ? 'grid grid-cols-1 w-full  md:w-[20vw] lg:w-[32vw] xl:w-[30vw]': ""} flex flex-row justify-between`}>
